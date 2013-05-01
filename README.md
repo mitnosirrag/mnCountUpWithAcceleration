@@ -10,5 +10,5 @@ As `value` gets closer to the final value, the speed will throttle back and at t
 If `append` is set, the final value will be followed by `append`.
 
 ## TODO
-- Convert append to `object` that accepts multiple parameters.
+- Convert `append` to `object` that accepts multiple parameters.
 - Smoother deceleration at the end of the animation.
