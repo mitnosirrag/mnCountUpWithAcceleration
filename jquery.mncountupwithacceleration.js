@@ -8,7 +8,7 @@
 * numbers quickly, but will throttle back as it gets toward the final number
 */
 $.fn.extend({
-    mnCountUpWithAcceleration: function(end,append) {
+    mnCountUpWithAcceleration: function(end,options) {
         var t = $(this);
         var speed = 1, i = 0, to, a = 6;
         var start = t.text();
@@ -21,8 +21,11 @@ $.fn.extend({
         if ( start >= end ) {
             dir = 'down';
         }
-        if ( !append ) 
-            append = '';
+        var defaults = {
+            append: '',
+            highlightOnComplete: true
+        }
+        var opts = $.extend(defaults, options);
         i = parseInt(start);
         /*  
         * Thanks to Stackoverflow user: mikez302
@@ -37,8 +40,10 @@ $.fn.extend({
         function cuwaTest() {
             if ( 0 == Math.abs(end - i) ) {
                 clearTimeout(to);
-                t.text($.numberWithCommas(end) + append);
-                t.parent().effect('highlight',{color:'#efb669'},1000);
+                t.text($.numberWithCommas(end) + opts.append);
+                if ( opts.highlightOnComplete ) {
+                    t.parent().effect('highlight',{color:'#efb669'},1000);
+                }
             } else {
                 cuwaCount();
             }
